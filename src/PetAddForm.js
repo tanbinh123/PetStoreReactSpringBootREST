@@ -51,15 +51,19 @@ class PetAddForm extends Component {
         (result) => {
           console.log(result);
           this.setState({petName:'Enter pet name',petType:'DOG'});
+          this.props.onPetAdded();
+          
         },
         // Note: it's important to handle errors here
         // instead of a catch() block so that we don't swallow
         // exceptions from actual bugs in components.
         (error) => {
+          console.log("createNewPet: error: "+error);
           this.setState({
             isLoaded: true,
             error
           });
+          this.props.onPetAdded();
         }
       )
 
@@ -82,7 +86,7 @@ class PetAddForm extends Component {
     console.log ("Pet Type Selected Was "+this.state.petType);
     console.log (event.target);
     this.createNewPet();
-    this.props.onPetAdded();
+    
     
 
     event.preventDefault();
@@ -133,6 +137,7 @@ class PetAddForm extends Component {
         </label>
         
         <button name="add"    type="button" onClick={this.handleSubmit}>Add Pet</button>
+        <div>&nbsp;</div>
         <button name="update" type="button" onClick={this.handleUpdate}>Update Pet</button>
         <button name="find"   type="button" onClick={this.handleFind}>Find Pet By Name</button>
 

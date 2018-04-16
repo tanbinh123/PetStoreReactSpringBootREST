@@ -64,7 +64,7 @@ class PetsDisplayContainer extends Component {
       .then(res => res.json())
       .then(
         (result) => {
-          console.log(result);
+          console.log("getPetsDataFromServer: "+result);
           this.setState({
             isLoaded: true,
             items: result
@@ -171,9 +171,10 @@ class PetsDisplayContainer extends Component {
     );
 
     return (
-      <div className="AppPetsDisplayContainer">
+      <div className="PetsDisplayContainer">
       <PetAddForm onPetAdded={this.petAdditionHandler} onPetUpdated={this.petUpdatedHander} onPetFind={this.petFindHandler} petId={this.state.currPetId} petName={this.state.currPetName} petType={this.state.currPetType}></PetAddForm>
-      <table  border="1">
+      <br/>
+      <table  border="1" align="center">
       <tr><th>Pet Id</th><th>Pet Name</th><th>Pet Type</th></tr>
       {petsRows}
       </table>
